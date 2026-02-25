@@ -38,3 +38,14 @@ for folder_path in folder_paths:
             images.append(img) # Adds original image to the list
             found_mask = False
 
+# Convert lists to NumPy arrays
+X = np.array(images) # Create an array of all original images
+y = np.array(masks) # Create an array of all masked imaged (Ground truth)
+
+X = np.expand_dims(X, -1)
+y = np.expand_dims(y, -1)
+
+print(f"X shape: {X.shape} | y shape: {y.shape}")
+# Split images into training and validation
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.1)
+
